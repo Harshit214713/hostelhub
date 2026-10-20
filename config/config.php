@@ -30,14 +30,18 @@ if (!defined('HOSTELHUB_CONFIG')) {
     
     // Find project root folder
     $docRoot = str_replace('\\', '/', realpath(__DIR__ . '/..'));
-    $serverDocRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT'] ?? '');
+    $serverDocRoot = !empty($_SERVER['DOCUMENT_ROOT']) ? str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'])) : '';
     
     if (!empty($serverDocRoot) && strpos($docRoot, $serverDocRoot) === 0) {
         $subDir = substr($docRoot, strlen($serverDocRoot));
         $baseUrl = rtrim($protocol . $host . $subDir, '/');
     } else {
-        // Fallback for direct localhost/hms or virtual hosts
-        $baseUrl = rtrim($protocol . $host . '/hms', '/');
+        $currentUri = $_SERVER['SCRIPT_NAME'] ?? '';
+        if (strpos($currentUri, '/hms/') !== false || strpos($currentUri, '/hms') === 0) {
+            $baseUrl = rtrim($protocol . $host . '/hms', '/');
+        } else {
+            $baseUrl = rtrim($protocol . $host, '/');
+        }
     }
     
     define('BASE_URL', $baseUrl);
