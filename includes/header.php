@@ -21,13 +21,13 @@ $currentUser = current_user();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css?v=<?= time() ?>">
 </head>
 <body>
 
 <!-- Header / Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
-    <div class="container-fluid px-lg-5">
+<nav class="navbar navbar-expand-lg navbar-custom navbar-light sticky-top">
+    <div class="container-fluid px-3 px-lg-5">
         <a class="navbar-brand-custom" href="<?= BASE_URL ?>/index.php">
             <span class="brand-icon-box">
                 <i class="bi bi-buildings"></i>

@@ -111,7 +111,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     <div class="p-3 bg-light rounded-3 border">
                                         <div class="small text-muted mb-1">Semester Tariff</div>
                                         <div class="fw-bold text-dark fs-6"><?= format_currency($student['FeePerSemester']) ?></div>
-                                        <div class="small text-muted">Per Academic Semester</div>
+                                        <div class="small text-muted">Per Semester</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">

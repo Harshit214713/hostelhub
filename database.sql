@@ -225,8 +225,8 @@ INSERT INTO `logins` (`LoginID`, `Username`, `Password`, `Role`, `StudentID`, `W
 
 -- Insert Allocations
 INSERT INTO `room_allocations` (`AllocationID`, `StudentID`, `RoomID`, `AllocationDate`, `VacatedDate`, `Status`, `Notes`) VALUES
-(1, 1, 1, '2026-07-01', NULL, 'Active', 'Bed 1 allocated for Academic Year 2026-2027'),
-(2, 2, 1, '2026-07-01', NULL, 'Active', 'Bed 2 allocated for Academic Year 2026-2027'),
+(1, 1, 1, '2026-07-01', NULL, 'Active', 'Bed 1 allocated'),
+(2, 2, 1, '2026-07-01', NULL, 'Active', 'Bed 2 allocated'),
 (3, 3, 2, '2026-07-05', NULL, 'Active', 'Bed 1 allocated'),
 (4, 4, 5, '2026-07-10', NULL, 'Active', 'Bed 1 allocated'),
 (5, 5, 7, '2026-07-12', NULL, 'Active', 'Single deluxe room allocated');

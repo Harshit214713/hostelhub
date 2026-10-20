@@ -393,7 +393,7 @@ require_once __DIR__ . '/../includes/header.php';
 
                 <div class="mb-3">
                     <label class="form-label small fw-semibold">Allocation Notes</label>
-                    <textarea name="notes" class="form-control" rows="2" placeholder="e.g. Assigned Bed 1, Academic Year 2026-27"></textarea>
+                    <textarea name="notes" class="form-control" rows="2" placeholder="e.g. Assigned Bed 1"></textarea>
                 </div>
             </div>
             <div class="modal-footer">

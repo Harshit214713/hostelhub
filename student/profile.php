@@ -111,7 +111,7 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="col-lg-8">
                 <div class="content-card">
                     <div class="content-card-header">
-                        <h6 class="content-card-title"><i class="bi bi-person-lines-fill me-2 text-muted"></i>Personal & Academic Information</h6>
+                        <h6 class="content-card-title"><i class="bi bi-person-lines-fill me-2 text-muted"></i>Personal & Student Information</h6>
                     </div>
                     <div class="content-card-body">
                         <form method="POST" action="profile.php" class="needs-validation" novalidate>
@@ -137,7 +137,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     <div class="fw-semibold text-dark"><?= htmlspecialchars($student['Course']) ?></div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label small text-muted">Academic Year</label>
+                                    <label class="form-label small text-muted">Year of Study</label>
                                     <div class="fw-semibold text-dark">Year <?= $student['Year'] ?></div>
                                 </div>
                                 <div class="col-12 mt-2">

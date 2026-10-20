@@ -15,18 +15,18 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- Hero Section (Matches Report Screenshot Page 13) -->
 <section class="hero-section">
-    <div class="container px-4">
+    <div class="container px-3">
         <h1 class="hero-title">
-            Modern Hostel Management <span class="teal-highlight">Made Simple</span>
+            Modern Hostel <br class="d-sm-none">Management <br class="d-sm-none"><span class="teal-highlight">Made Simple</span>
         </h1>
         <p class="hero-subtitle">
             A comprehensive solution for hostel administrators and students. Manage rooms, payments, and maintenance requests all in one place.
         </p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <div class="d-flex justify-content-center gap-2 gap-sm-3 flex-column flex-sm-row mx-auto" style="max-width: 360px;">
             <a href="<?= BASE_URL ?>/auth/register.php" class="btn btn-teal btn-lg px-4 py-2">
                 Get Started
             </a>
-            <a href="#features" class="btn btn-ghost-muted btn-lg px-4 py-2 d-flex align-items-center gap-2">
+            <a href="#features" class="btn btn-ghost-muted btn-lg px-4 py-2 d-inline-flex justify-content-center align-items-center gap-2">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
             </a>
@@ -36,7 +36,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- Key Features Section (Matches Report Screenshot Page 13) -->
 <section class="features-section" id="features">
-    <div class="container px-lg-5">
+    <div class="container px-3 px-lg-5">
         <h2 class="section-heading">Key Features</h2>
 
         <div class="row g-4">
@@ -112,7 +112,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- About Section -->
 <section class="py-5 bg-white border-top" id="about">
-    <div class="container px-lg-5">
+    <div class="container px-3 px-lg-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
                 <span class="badge bg-light text-teal border px-3 py-2 mb-3 fw-bold" style="color: var(--primary-teal);">ABOUT THE PROJECT</span>
@@ -121,40 +121,41 @@ require_once __DIR__ . '/includes/header.php';
                     The <strong>College Hostel Management System (HostelHub)</strong> eliminates manual paper registers, handwriting errors, and delayed communication. Built with PHP 8, MySQL, and Bootstrap 5, it provides automated room assignment, anti-overbooking safeguards, fee tracking, visitor logging, and real-time maintenance complaint resolutions.
                 </p>
                 <div class="p-3 rounded-3 bg-light border">
-                    <div class="small text-dark fw-bold mb-1">Academic Affiliation:</div>
+                    <div class="small text-dark fw-bold mb-1">Project Creator & Developer:</div>
                     <p class="small text-muted mb-0">
-                        Department of Artificial Intelligence & Data Science,<br>
-                        <strong>K. K. Wagh Institute of Engineering Education and Research, Nashik</strong><br>
-                        Academic Year 2024-2025
+                        <strong>Rahil Shah</strong><br>
+                        Lead Full-Stack Developer & Designer
                     </p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="content-card p-4 shadow-sm">
                     <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
-                        <i class="bi bi-people-fill text-teal" style="color: var(--primary-teal);"></i> Project Team
+                        <i class="bi bi-person-badge-fill text-teal" style="color: var(--primary-teal);"></i> Project Ownership & Architecture
                     </h5>
+                    <div class="d-flex align-items-center gap-3 mb-3 p-3 bg-light rounded-3">
+                        <div class="avatar-circle" style="width: 48px; height: 48px; background-color: var(--primary-teal); color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-size: 1.15rem;">
+                            RS
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold text-dark">Rahil Shah</h6>
+                            <span class="small text-muted">Project Creator & Lead Full-Stack Architect</span>
+                        </div>
+                    </div>
                     <ul class="list-group list-group-flush small">
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            <span class="fw-semibold text-dark">Tejas Sonawane</span>
-                            <span class="badge bg-light text-secondary border">Roll No. 57</span>
+                            <span class="text-muted">Application</span>
+                            <span class="fw-semibold text-dark">HostelHub Management System</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            <span class="fw-semibold text-dark">Rahil Shah</span>
-                            <span class="badge bg-light text-secondary border">Roll No. 49</span>
+                            <span class="text-muted">Technology Stack</span>
+                            <span class="badge bg-light text-secondary border">PHP 8 &bull; MySQL &bull; Bootstrap 5</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            <span class="fw-semibold text-dark">Varad Patil</span>
-                            <span class="badge bg-light text-secondary border">Roll No. 41</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            <span class="fw-semibold text-dark">Kushagra Vispute</span>
-                            <span class="badge bg-light text-secondary border">Roll No. 61</span>
+                            <span class="text-muted">Core Modules</span>
+                            <span class="fw-semibold text-dark">RBAC, Allocations, Fees, Complaints, Visitors</span>
                         </li>
                     </ul>
-                    <div class="mt-3 pt-3 border-top small text-muted">
-                        <strong>Project Guide:</strong> Prof. Dr. Y. D. Bhise
-                    </div>
                 </div>
             </div>
         </div>
@@ -163,7 +164,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- Contact / Support Section -->
 <section class="py-5 bg-light border-top" id="contact">
-    <div class="container px-lg-5">
+    <div class="container px-3 px-lg-5">
         <div class="row justify-content-center text-center">
             <div class="col-lg-7">
                 <h3 class="fw-bold text-dark mb-2">Need Assistance with Hostel Admission?</h3>

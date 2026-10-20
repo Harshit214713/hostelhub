@@ -4,10 +4,10 @@ require_once __DIR__ . '/../config/config.php';
 
 <!-- Footer -->
 <footer class="site-footer">
-    <div class="container px-lg-5">
+    <div class="container px-3 px-lg-5">
         <div class="row g-4 align-items-center">
             <div class="col-md-6 text-center text-md-start">
-                <div class="d-flex align-items-center gap-2 mb-2 justify-content-center justify-content-md-start">
+                <div class="d-flex align-items-center gap-2 mb-2 justify-content-center justify-content-md-start flex-wrap">
                     <span class="brand-icon-box" style="width:28px; height:28px; font-size:0.9rem;">
                         <i class="bi bi-buildings"></i>
                     </span>
@@ -15,7 +15,7 @@ require_once __DIR__ . '/../config/config.php';
                     <span class="text-muted">| <?= APP_TITLE ?></span>
                 </div>
                 <p class="small text-muted mb-0">
-                    Developed for Department of AI & Data Science, K. K. Wagh Institute of Engineering Education and Research.
+                    Developed by <strong>Rahil Shah</strong> | HostelHub Management System
                 </p>
             </div>
             <div class="col-md-6 text-center text-md-end">

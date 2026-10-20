@@ -133,7 +133,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <thead>
                         <tr>
                             <th>Student Details</th>
-                            <th>Course & Academic Year</th>
+                            <th>Course & Year</th>
                             <th>Allocated Room</th>
                             <th>Emergency Contact</th>
                             <th>Fee Status</th>

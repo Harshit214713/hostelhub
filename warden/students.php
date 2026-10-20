@@ -59,7 +59,7 @@ require_once __DIR__ . '/../includes/header.php';
                         <tr>
                             <th>Room No.</th>
                             <th>Student Resident</th>
-                            <th>Course & Academic Year</th>
+                            <th>Course & Year</th>
                             <th>Student Contact</th>
                             <th>Emergency Contact Person</th>
                             <th>Emergency Phone</th>

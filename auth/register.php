@@ -129,7 +129,7 @@ require_once __DIR__ . '/../includes/header.php';
                         <?= csrf_field() ?>
 
                         <h6 class="text-uppercase text-secondary fw-bold small mb-3" style="letter-spacing: 0.05em;">
-                            1. Personal & Academic Details
+                            1. Personal & Student Details
                         </h6>
 
                         <div class="row g-3 mb-4">
