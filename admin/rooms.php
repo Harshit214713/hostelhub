@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $blockId = (int)($_POST['block_id'] ?? 0);
         $roomNum = trim($_POST['room_number'] ?? '');
         $type = trim($_POST['room_type'] ?? 'Double');
-        $capacity = max(1, (int)($_POST['capacity'] ?? 2));
-        $fee = (float)($_POST['fee_per_semester'] ?? 25000);
+        $capacity = max(1, min(10, (int)($_POST['capacity'] ?? 2)));
+        $fee = max(0, (float)($_POST['fee_per_semester'] ?? 25000));
         $status = trim($_POST['status'] ?? 'Available');
 
         if ($blockId <= 0 || empty($roomNum)) {
@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $blockId = (int)($_POST['block_id'] ?? 0);
         $roomNum = trim($_POST['room_number'] ?? '');
         $type = trim($_POST['room_type'] ?? 'Double');
-        $capacity = max(1, (int)($_POST['capacity'] ?? 2));
-        $fee = (float)($_POST['fee_per_semester'] ?? 25000);
+        $capacity = max(1, min(10, (int)($_POST['capacity'] ?? 2)));
+        $fee = max(0, (float)($_POST['fee_per_semester'] ?? 25000));
         $status = trim($_POST['status'] ?? 'Available');
 
         if ($roomId > 0 && $blockId > 0 && !empty($roomNum)) {
