@@ -53,9 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'checkout') {
         $visitorId = (int)($_POST['visitor_id'] ?? 0);
         if ($visitorId > 0) {
-            $pdo->prepare("UPDATE visitors SET Status = 'Checked Out', CheckOutTime = NOW() WHERE VisitorID = :id")
-                ->execute([':id' => $visitorId]);
-            set_flash('success', 'Visitor checked out successfully.');
+            $stmt = $pdo->prepare("UPDATE visitors SET Status = 'Checked Out', CheckOutTime = NOW() WHERE VisitorID = :id AND Status = 'Checked In'");
+            $stmt->execute([':id' => $visitorId]);
+            if ($stmt->rowCount() > 0) {
+                set_flash('success', 'Visitor checked out successfully.');
+            } else {
+                set_flash('warning', 'Visitor is already checked out or does not exist.');
+            }
         }
         redirect('warden/visitors.php');
     }
