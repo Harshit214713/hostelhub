@@ -33,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($formData['phone'])) $errors[] = 'Contact phone number is required.';
         if (empty($formData['emergency_contact'])) $errors[] = 'Emergency contact person name is required.';
         if (empty($formData['emergency_phone'])) $errors[] = 'Emergency phone number is required.';
+        $academicYear = (int)($formData['year'] ?? 0);
+        if ($academicYear < 1 || $academicYear > 4) $errors[] = 'Academic year must be between 1 and 4.';
         if (strlen($password) < 6) $errors[] = 'Password must be at least 6 characters.';
         if ($password !== $confirmPassword) $errors[] = 'Passwords do not match.';
 
