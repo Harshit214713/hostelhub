@@ -33,18 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idProof = trim($_POST['id_proof'] ?? '');
 
         if ($studentId > 0 && !empty($name) && !empty($phone)) {
-            $stmt = $pdo->prepare("
-                INSERT INTO visitors (StudentID, Name, Relation, Phone, IDProof, VisitDate, CheckInTime, Status)
-                VALUES (:sid, :n, :r, :p, :idp, CURDATE(), NOW(), 'Checked In')
-            ");
-            $stmt->execute([
-                ':sid' => $studentId,
-                ':n'   => $name,
-                ':r'   => $relation,
-                ':p'   => $phone,
-                ':idp' => $idProof
-            ]);
-            set_flash('success', "Visitor {$name} checked in.");
+            if (!preg_match('/^[0-9+\s\-]{7,15}$/', $phone)) {
+                set_flash('danger', 'Please provide a valid contact phone number.');
+            } else {
+                $stmt = $pdo->prepare("
+                    INSERT INTO visitors (StudentID, Name, Relation, Phone, IDProof, VisitDate, CheckInTime, Status)
+                    VALUES (:sid, :n, :r, :p, :idp, CURDATE(), NOW(), 'Checked In')
+                ");
+                $stmt->execute([
+                    ':sid' => $studentId,
+                    ':n'   => $name,
+                    ':r'   => $relation,
+                    ':p'   => $phone,
+                    ':idp' => $idProof
+                ]);
+                set_flash('success', "Visitor {$name} checked in.");
+            }
         }
         redirect('warden/visitors.php');
     }

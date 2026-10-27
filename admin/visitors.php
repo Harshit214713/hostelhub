@@ -25,21 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idProof = trim($_POST['id_proof'] ?? '');
 
         if ($studentId > 0 && !empty($name) && !empty($phone)) {
-            try {
-                $stmt = $pdo->prepare("
-                    INSERT INTO visitors (StudentID, Name, Relation, Phone, IDProof, VisitDate, CheckInTime, Status)
-                    VALUES (:sid, :n, :r, :p, :idp, CURDATE(), NOW(), 'Checked In')
-                ");
-                $stmt->execute([
-                    ':sid' => $studentId,
-                    ':n'   => $name,
-                    ':r'   => $relation,
-                    ':p'   => $phone,
-                    ':idp' => $idProof
-                ]);
-                set_flash('success', "Visitor {$name} checked in successfully.");
-            } catch (PDOException $e) {
-                set_flash('danger', 'Error logging visitor: ' . $e->getMessage());
+            if (!preg_match('/^[0-9+\s\-]{7,15}$/', $phone)) {
+                set_flash('danger', 'Please provide a valid contact phone number.');
+            } else {
+                try {
+                    $stmt = $pdo->prepare("
+                        INSERT INTO visitors (StudentID, Name, Relation, Phone, IDProof, VisitDate, CheckInTime, Status)
+                        VALUES (:sid, :n, :r, :p, :idp, CURDATE(), NOW(), 'Checked In')
+                    ");
+                    $stmt->execute([
+                        ':sid' => $studentId,
+                        ':n'   => $name,
+                        ':r'   => $relation,
+                        ':p'   => $phone,
+                        ':idp' => $idProof
+                    ]);
+                    set_flash('success', "Visitor {$name} checked in successfully.");
+                } catch (PDOException $e) {
+                    set_flash('danger', 'Error logging visitor: ' . $e->getMessage());
+                }
             }
         }
         redirect('admin/visitors.php');
