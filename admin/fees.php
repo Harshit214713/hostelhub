@@ -45,15 +45,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $txnRef = trim($_POST['transaction_ref'] ?? '');
         $paidDate = trim($_POST['paid_date'] ?? date('Y-m-d'));
 
+        $allowedMethods = ['Cash', 'UPI', 'Net Banking', 'Card'];
+        if (!in_array($method, $allowedMethods, true)) {
+            $method = 'Cash';
+        }
+
         if ($feeId > 0) {
             try {
                 $stmt = $pdo->prepare("
                     UPDATE fees 
                     SET Status = 'Paid', PaidDate = :pd, PaymentMethod = :pm, TransactionRef = :ref
-                    WHERE FeeID = :id
+                    WHERE FeeID = :id AND Status != 'Paid'
                 ");
                 $stmt->execute([':pd' => $paidDate, ':pm' => $method, ':ref' => $txnRef, ':id' => $feeId]);
-                set_flash('success', 'Payment recorded successfully! Status updated to Paid.');
+                if ($stmt->rowCount() > 0) {
+                    set_flash('success', 'Payment recorded successfully! Status updated to Paid.');
+                } else {
+                    set_flash('warning', 'Fee is already marked as Paid or not found.');
+                }
             } catch (PDOException $e) {
                 set_flash('danger', 'Error updating fee: ' . $e->getMessage());
             }
