@@ -57,7 +57,8 @@ $complaintsReport = $pdo->query("
     ORDER BY c.Date DESC
 ")->fetchAll();
 
-$activeTab = $_GET['tab'] ?? 'occupancy';
+$allowedTabs = ['occupancy', 'fees', 'complaints'];
+$activeTab = in_array($_GET['tab'] ?? '', $allowedTabs, true) ? $_GET['tab'] : 'occupancy';
 
 $pageTitle = 'Audit Reports - ' . APP_NAME;
 require_once __DIR__ . '/../includes/header.php';
