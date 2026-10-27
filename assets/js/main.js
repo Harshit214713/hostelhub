@@ -60,15 +60,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
         input.addEventListener('input', function () {
             const query = input.value.toLowerCase().trim();
-            const rows = targetTable.querySelectorAll('tbody tr');
+            const rows = targetTable.querySelectorAll('tbody tr:not(.no-search-results)');
+            let visibleCount = 0;
             rows.forEach(function (row) {
                 const text = row.textContent.toLowerCase();
                 if (text.includes(query)) {
                     row.style.display = '';
+                    visibleCount++;
                 } else {
                     row.style.display = 'none';
                 }
             });
+
+            let noResultRow = targetTable.querySelector('.no-search-results');
+            if (visibleCount === 0 && query !== '') {
+                if (!noResultRow) {
+                    const colCount = targetTable.querySelectorAll('thead th').length || 6;
+                    noResultRow = document.createElement('tr');
+                    noResultRow.className = 'no-search-results text-center py-4 text-muted';
+                    noResultRow.innerHTML = `<td colspan="${colCount}" class="py-4 text-muted"><i class="bi bi-search me-2"></i>No records matching "<strong>${query}</strong>"</td>`;
+                    const tbody = targetTable.querySelector('tbody');
+                    if (tbody) tbody.appendChild(noResultRow);
+                } else {
+                    noResultRow.style.display = '';
+                    const strong = noResultRow.querySelector('strong');
+                    if (strong) strong.textContent = query;
+                }
+            } else if (noResultRow) {
+                noResultRow.style.display = 'none';
+            }
         });
     });
 
