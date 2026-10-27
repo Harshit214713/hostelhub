@@ -28,18 +28,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resolvedAt = ($status === 'Resolved') ? date('Y-m-d H:i:s') : null;
 
     if ($complaintId > 0) {
-        $stmt = $pdo->prepare("
-            UPDATE complaints 
-            SET Status = :s, AdminRemarks = :r, ResolvedAt = :ra 
-            WHERE ComplaintID = :id
+        $checkStmt = $pdo->prepare("
+            SELECT COUNT(*) FROM complaints c
+            JOIN students s ON c.StudentID = s.StudentID
+            JOIN rooms r ON s.RoomID = r.RoomID
+            WHERE c.ComplaintID = :cid AND r.BlockID = :bid
         ");
-        $stmt->execute([
-            ':s'  => $status,
-            ':r'  => "Warden ({$warden['Name']}): " . $remarks,
-            ':ra' => $resolvedAt,
-            ':id' => $complaintId
-        ]);
-        set_flash('success', 'Complaint status updated.');
+        $checkStmt->execute([':cid' => $complaintId, ':bid' => $blockId]);
+
+        if ($checkStmt->fetchColumn() > 0) {
+            $stmt = $pdo->prepare("
+                UPDATE complaints 
+                SET Status = :s, AdminRemarks = :r, ResolvedAt = :ra 
+                WHERE ComplaintID = :id
+            ");
+            $stmt->execute([
+                ':s'  => $status,
+                ':r'  => "Warden ({$warden['Name']}): " . $remarks,
+                ':ra' => $resolvedAt,
+                ':id' => $complaintId
+            ]);
+            set_flash('success', 'Complaint status updated.');
+        } else {
+            set_flash('danger', 'Unauthorized: You can only update complaints for your assigned block.');
+        }
     }
     redirect('warden/complaints.php');
 }
