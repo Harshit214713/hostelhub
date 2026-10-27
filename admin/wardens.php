@@ -67,12 +67,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $blockId = !empty($_POST['block_id']) ? (int)$_POST['block_id'] : null;
 
         if ($wardenId > 0 && !empty($name)) {
-            try {
-                $stmt = $pdo->prepare("UPDATE wardens SET Name = :n, Email = :e, Phone = :p, BlockID = :b WHERE WardenID = :id");
-                $stmt->execute([':n' => $name, ':e' => $email, ':p' => $phone, ':b' => $blockId, ':id' => $wardenId]);
-                set_flash('success', "Warden {$name} updated successfully.");
-            } catch (PDOException $e) {
-                set_flash('danger', 'Error updating warden: ' . $e->getMessage());
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                set_flash('danger', 'A valid email address is required.');
+            } else {
+                $checkEmail = $pdo->prepare("SELECT COUNT(*) FROM wardens WHERE Email = :e AND WardenID != :id");
+                $checkEmail->execute([':e' => $email, ':id' => $wardenId]);
+                if ($checkEmail->fetchColumn() > 0) {
+                    set_flash('danger', "Email {$email} is already registered to another warden.");
+                } else {
+                    try {
+                        $stmt = $pdo->prepare("UPDATE wardens SET Name = :n, Email = :e, Phone = :p, BlockID = :b WHERE WardenID = :id");
+                        $stmt->execute([':n' => $name, ':e' => $email, ':p' => $phone, ':b' => $blockId, ':id' => $wardenId]);
+                        set_flash('success', "Warden {$name} updated successfully.");
+                    } catch (PDOException $e) {
+                        set_flash('danger', 'Error updating warden: ' . $e->getMessage());
+                    }
+                }
             }
         }
         redirect('admin/wardens.php');
